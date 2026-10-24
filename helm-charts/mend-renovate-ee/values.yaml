@@ -928,6 +928,28 @@ serviceWeb:
   # cloud.google.com/load-balancer-type: "Internal"
   labels: { }
 
+ingress:
+  enabled: false
+
+  # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+  # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+  # ingressClassName: nginx
+
+  annotations: { }
+  # kubernetes.io/tls-acme: "true"
+
+  hosts:
+    { }
+  # mend-renovate.local:
+  #   paths:
+  #     - path: "/"
+  #       pathType: ImplementationSpecific
+
+  tls: [ ]
+  #  - secretName: mend-renovate-tls
+  #    hosts:
+  #      - mend-renovate.local
+
 # Optional OpenShift Route, configured independently of Ingress.
 route:
   enabled: false
@@ -961,25 +983,3 @@ routeWeb:
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect
-
-ingress:
-  enabled: false
-
-  # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
-  # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-  # ingressClassName: nginx
-
-  annotations: { }
-  # kubernetes.io/tls-acme: "true"
-
-  hosts:
-    { }
-  # mend-renovate.local:
-  #   paths:
-  #     - path: "/"
-  #       pathType: ImplementationSpecific
-
-  tls: [ ]
-  #  - secretName: mend-renovate-tls
-  #    hosts:
-  #      - mend-renovate.local

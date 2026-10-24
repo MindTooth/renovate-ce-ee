@@ -306,20 +306,6 @@ service:
   # cloud.google.com/load-balancer-type: "Internal"
   labels: { }
 
-# Optional OpenShift Route, configured independently of Ingress.
-route:
-  enabled: false
-  # Leave empty for an OpenShift-generated hostname.
-  host: ""
-  annotations: {}
-  # Named port on the existing Service.
-  targetPort: http
-  # Edge termination uses HTTP to the backend. Set null for an HTTP-only Route.
-  # Only edge termination is supported.
-  tls:
-    termination: edge
-    insecureEdgeTerminationPolicy: Redirect
-
 ingress:
   enabled: false
 
@@ -339,6 +325,20 @@ ingress:
   #  - secretName: mend-renovate-tls
   #    hosts:
   #      - mend-renovate.local
+
+# Optional OpenShift Route, configured independently of Ingress.
+route:
+  enabled: false
+  # Leave empty for an OpenShift-generated hostname.
+  host: ""
+  annotations: {}
+  # Named port on the existing Service.
+  targetPort: http
+  # Edge termination uses HTTP to the backend. Set null for an HTTP-only Route.
+  # Only edge termination is supported.
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
 
 serviceAccount:
   create: false
