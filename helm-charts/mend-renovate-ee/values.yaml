@@ -928,6 +928,40 @@ serviceWeb:
   # cloud.google.com/load-balancer-type: "Internal"
   labels: { }
 
+# Optional OpenShift Route, configured independently of Ingress.
+route:
+  enabled: false
+  # Leave empty for an OpenShift-generated hostname.
+  host: ""
+  annotations: {}
+  # Named port on the existing Service.
+  targetPort: http
+  # Edge termination uses HTTP to the backend. Set null for an HTTP-only Route.
+  # Only edge termination is supported.
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+
+# WARNING: Exposing the EE Web UI through an OpenShift Route
+# may provide external access to administrative functionality.
+# When renovateWeb.mendRnvPlatform is 'noauth', the Web UI
+# does not require user authentication.
+# Do not expose a Web UI using 'noauth' to untrusted networks.
+# Configure appropriate authentication and restrict access
+# before enabling this Route.
+routeWeb:
+  enabled: false
+  # Leave empty for an OpenShift-generated hostname.
+  host: ""
+  annotations: {}
+  # Named port on the existing Service.
+  targetPort: http
+  # Edge termination uses HTTP to the backend. Set null for an HTTP-only Route.
+  # Only edge termination is supported.
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+
 ingress:
   enabled: false
 
